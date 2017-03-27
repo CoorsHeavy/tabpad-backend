@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tab Pad</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <h1 style="text-align: center">Tab Pad</h1>
+        <h3 style="text-align: center">Opening Tabs...</h3>
+    </body>
+    <script type='text/javascript'>
+        function addhttp(url) {
+            if (!/^((?:f|ht)tps?\:\/\/|chrome?\:\/\/)/.test(url)) {
+                url = "http://" + url;
+            }
+            return url;
+        }
+        var links = <%- JSON.stringify(tabs)%>;
+        var x;
+        for (x in links) {
+            if(x > 0)
+            var win = window.open(addhttp(links[x], '_blank'));
+        }
+        window.location.replace(addhttp(links[0]));
+
+    </script>
+</html>

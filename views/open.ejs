@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tab Pad <%= name %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    </head>
+    <body>
+        <h1 style="text-align: center;">Tab Pad</h1>
+        <h2 style="text-align: center;"><%= name %></h2>
+        <h3 style="text-align: center;">Want to save a Tab to this page? <a href="https://chrome.google.com/webstore/detail/tab-pad/ggcjpnocdhkilfmcdchhifocbilnempp">Use the Tab Pad chrome extension</a></h3>
+        <footer>
+            <div class="col-md-12 text-center">
+                <button class = "btn btn-primary btn-lg" onclick="myFunction()">Open Tabs</button>
+                <br/>
+            </div>
+
+            <div class="col-md-12">
+                <p></p>
+                <p class="footerText">What is Tab Pad: Tab Pad is the simplest way to save chrome tabs in the cloud. <a href="#">Use the chrome extension</a> to save the URLs of a window's tabs to a passcode in the system. Go to tabpad.me/{passcode} later to open those tabs again in any browser.</p>
+                <p class="footerText">Hudson Hughes</p>
+            </div>
+
+        </footer>
+    </body>
+    <script type='text/javascript'>
+
+        //console.log(document.getElementsByTagName("footer")[0].style.pixelHeight + "px")
+
+        function myFunction() {
+            window.open("http://45.79.74.180:3000/util/opener?name=" + '<%= name %>', '', '')
+        }
+        function addhttp(url) {
+            if (!/^((?:f|ht)tps?\:\/\/|chrome?\:\/\/)/.test(url)) {
+                url = "http://" + url;
+            }
+            return url;
+        }
+        var test = <%- JSON.stringify(tabs) %>;
+        test.forEach(function(element) {
+            document.body.innerHTML +=
+                '<a style="padding-bottom: 15px; font-size: large; display:inline-block;" href=' + addhttp(element) + '>' + addhttp(element) + '</a></br>';
+        });
+
+    </script>
+</html>
